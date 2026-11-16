@@ -1,0 +1,173 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/newsreader";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader Variable", ui-serif, Georgia, serif;
+
+  /* Latar editorial hangat untuk Beranda dan Info toko */
+  --color-cream: #faf8f5;
+  --color-star: #d97706;
+
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+
+  /* Utama (zamrud) */
+  --color-primary-50: #ecfdf5;
+  --color-primary-100: #d1fae5;
+  --color-primary-200: #a7f3d0;
+  --color-primary-500: #10b981;
+  --color-primary-600: #059669;
+  --color-primary-700: #047857;
+  --color-primary-800: #065f46;
+  --color-primary-900: #064e3b;
+
+  /* Peringatan (ungu) */
+  --color-warning-50: #f5f3ff;
+  --color-warning-100: #ede9fe;
+  --color-warning-200: #ddd6fe;
+  --color-warning-300: #c4b5fd;
+  --color-warning-600: #7c3aed;
+  --color-warning-700: #6d28d9;
+  --color-warning-800: #5b21b6;
+
+  /* Bahaya (merah) */
+  --color-danger-50: #fef2f2;
+  --color-danger-100: #fee2e2;
+  --color-danger-200: #fecaca;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
+  --color-danger-800: #991b1b;
+
+  /* Info (biru langit) */
+  --color-info-50: #f0f9ff;
+  --color-info-100: #e0f2fe;
+  --color-info-700: #0369a1;
+
+  /* Netral (slate) */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-900: #0f172a;
+
+  --shadow-card: 0 0.0625rem 0.125rem rgb(15 23 42 / 0.06), 0 0.125rem 0.5rem rgb(15 23 42 / 0.05);
+  --shadow-pop: 0 0.5rem 1.5rem rgb(15 23 42 / 0.14);
+
+  --radius-control: 0.5rem;
+  --radius-card: 0.75rem;
+
+  /* Skala tipografi tetap (rem): 0,75 / 0,875 / 1 / 1,25 / 1,75 / 2,5. Ukuran bawaan lain dimatikan. */
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.3125rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.5rem;
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.5rem;
+  --text-section: 1rem;
+  --text-section--line-height: 1.5rem;
+  --text-display: 1.75rem;
+  --text-display--line-height: 2.1rem;
+  --text-hero: 2.5rem;
+  --text-hero--line-height: 3rem;
+}
+
+/* Variabel gaya shadcn dipetakan ke token di atas */
+:root {
+  --background: var(--color-slate-50);
+  --foreground: var(--color-slate-900);
+  --primary: var(--color-primary-700);
+  --primary-foreground: #ffffff;
+  --border: var(--color-slate-200);
+  --ring: var(--color-primary-500);
+  --sidebar: var(--color-primary-900);
+}
+
+@layer base {
+  html {
+    font-size: 100%;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+  * {
+    border-color: var(--border);
+  }
+  :focus-visible {
+    outline: 0.125rem solid var(--ring);
+    outline-offset: 0.125rem;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+}
+
+/* Area berarsir untuk blok waktu dan toko tutup */
+.hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgb(148 163 184 / 0.18) 0,
+    rgb(148 163 184 / 0.18) 0.25rem,
+    transparent 0.25rem,
+    transparent 0.5rem
+  );
+}
+
+/* Area gulir timeline: tinggi mengikuti layar, dalam rem. */
+.timeline-scroll {
+  position: relative;
+  max-height: calc(100dvh - 17rem);
+  min-height: 24rem;
+}
+
+/* Pratinjau struk hanya untuk layar; tidak ikut tercetak sebagai halaman web. */
+@media print {
+  .receipt-preview-dialog,
+  .receipt-preview {
+    display: none !important;
+  }
+}
+
+/* Area aman perangkat untuk tab bawah dan bar bawah wizard */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Galeri masonry: kolom CSS, item tidak terpotong antar kolom */
+.masonry {
+  column-count: 2;
+  column-gap: 0.5rem;
+}
+@media (min-width: 48rem) {
+  .masonry {
+    column-count: 3;
+  }
+}
+.masonry > * {
+  break-inside: avoid;
+  margin-bottom: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

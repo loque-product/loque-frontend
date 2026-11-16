@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /staf
+Disallow: /owner
+Disallow: /sa
+Disallow: /barber/
+Disallow: /akun
+Disallow: /booking
